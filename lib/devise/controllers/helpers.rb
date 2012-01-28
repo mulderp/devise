@@ -167,9 +167,12 @@ module Devise
       # tries to find a resource_root_path, otherwise it uses the root_path.
       def signed_in_root_path(resource_or_scope)
         scope = Devise::Mapping.find_scope!(resource_or_scope)
-        home_path = "#{scope}_root_path"
-        if respond_to?(home_path, true)
-          send(home_path)
+        resource_path = "#{scope}_root_path"
+        resources_path = "#{scope}s_root_path"
+        if respond_to?(resource_path, true)
+          send(resource_path)
+        elsif respond_to?(resources_path, true)
+          send(resources_path)
         elsif respond_to?(:root_path)
           root_path
         else

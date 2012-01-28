@@ -191,7 +191,7 @@ class ControllerAuthenticatableTest < ActionController::TestCase
   end
 
   test 'after sign in path defaults to root path if none by was specified for the given scope' do
-    assert_equal root_path, @controller.after_sign_in_path_for(:user)
+    assert_equal users_root_path, @controller.after_sign_in_path_for(:users)
   end
 
   test 'after sign in path defaults to the scoped root path' do
